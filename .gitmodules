@@ -1,0 +1,3 @@
+[submodule "xhgui"]
+	path = xhgui
+	url = https://github.com/Chassis/xhgui.git
