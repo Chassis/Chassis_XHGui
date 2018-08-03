@@ -1,7 +1,7 @@
 # A Chassis extension that installs XHProf and XHGui
-class xhgui (
+class chassis-xhgui (
 	$config,
-	$path = '/vagrant/extensions/xhgui',
+	$path = '/vagrant/extensions/chassis-xhgui',
 	$php_version = $config[php],
 	$host_name =$config['hosts'][0]
 ) {
@@ -17,12 +17,14 @@ class xhgui (
 	  include_src => false
 	}
 
-	if ( ! empty( $config[disabled_extensions] ) and 'chassis/xhgui' in $config[disabled_extensions] ) {
+	if ( ! empty( $config[disabled_extensions] ) and 'chassis/chassis-xhgui' in $config[disabled_extensions] ) {
 		$package = absent
 		$file = absent
+		$link = absent
 	} else {
 		$package = latest
 		$file = file
+		$link = link
 	}
 
 	if ! defined( Package["php${config[php]}-dev"] ) {
@@ -33,7 +35,7 @@ class xhgui (
 	}
 
 	file { [
-		"/vagrant/extensions/xhgui/xhgui/config/config.php",
+		"/vagrant/extensions/chassis-xhgui/xhgui/config/config.php",
 	]:
 	  ensure  => $file,
 	  content => template('xhgui/config.php.erb'),
@@ -46,7 +48,7 @@ class xhgui (
 
 	exec { 'install xhgui':
 		path => [ '/bin/', '/sbin/', '/usr/bin/', '/usr/sbin/' ],
-		cwd => '/vagrant/extensions/xhgui/xhgui/',
+		cwd => '/vagrant/extensions/chassis-xhgui/xhgui/',
 		command => 'php install.php',
 		require => [
 			Package["php$php_version-cli"],
@@ -57,7 +59,7 @@ class xhgui (
 		],
 		environment => ['HOME=/home/vagrant'],
 		logoutput   => true,
-		unless      => 'test -d /vagrant/extensions/xhgui/xhgui/vendor'
+		unless      => 'test -d /vagrant/extensions/chassis-xhgui/xhgui/vendor'
 	}
 
 	package { "php$php_version-mongodb":
@@ -86,8 +88,8 @@ class xhgui (
 	}
 
 	file { '/vagrant/xhgui':
-		ensure => link,
-		target => '/vagrant/extensions/xhgui/xhgui/webroot',
+		ensure => $link,
+		target => '/vagrant/extensions/chassis-xhgui/xhgui/webroot',
 		notify => Service['nginx'],
 	}
 
