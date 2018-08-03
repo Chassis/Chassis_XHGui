@@ -38,7 +38,7 @@ class chassis-xhgui (
 		"/vagrant/extensions/chassis-xhgui/xhgui/config/config.php",
 	]:
 	  ensure  => $file,
-	  content => template('xhgui/config.php.erb'),
+	  content => template('chassis-xhgui/config.php.erb'),
 	  owner   => 'root',
 	  group   => 'root',
 	  mode    => '0644',
