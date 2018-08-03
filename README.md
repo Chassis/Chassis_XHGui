@@ -1,4 +1,4 @@
-# XH
+# XHGui
 A Chassis extension to install and configure [XHGui](https://github.com/perftools/xhgui) on your Chassis server. This extension also has [XHProf](https://github.com/Chassis/XHProf) as a dependency so it will be installed and configured automatically as well.
 
 ## Installation
