@@ -23,7 +23,7 @@ A Chassis extension to install and configure [XHGui](https://github.com/perftool
 	- chassis/chassis-xhgui
 	```
 2. Run `vagrant provision`.
-3. Browse to [http://vagrant.local/xhgui](http://vagrant.local/xhgui) in a browser or if you have a custom host hame it will be [http://<yourhost>.local/xghui](http://<yourhost>.local/xghui)
+3. Browse to [http://vagrant.local/xhgui](http://vagrant.local/xhgui) in a browser or if you have a custom host hame it will be [http://yourhost.local/xghui](http://yourhost.local/xghui)
 
 ## Screenshots
 
