@@ -83,7 +83,7 @@ class chassis-xhgui (
 	}
 
 	file { "/etc/nginx/sites-available/$host_name.d/$host_name":
-	  content => template('xhgui/xhgui.nginx.conf.erb'),
+	  content => template('chassis-xhgui/xhgui.nginx.conf.erb'),
 	  notify => Service['nginx'],
 	}
 
