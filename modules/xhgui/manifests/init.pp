@@ -75,9 +75,20 @@ class xhgui (
 	  require => Package['mongodb-org']
 	}
 
+	file { "/etc/nginx/sites-available/$host_name.d":
+	  ensure => directory,
+	  require => File[ "/etc/nginx/sites-available/$host_names" ],
+	}
+
+	file { "/etc/nginx/sites-available/$host_name.d/$host_name":
+	  content => template('xhgui/xhgui.nginx.conf.erb'),
+	  notify => Service['nginx'],
+	}
+
 	file { '/vagrant/xhgui':
-		ensure => $link,
+		ensure => link,
 		target => '/vagrant/extensions/xhgui/xhgui/webroot',
 		notify => Service['nginx'],
 	}
+
 }

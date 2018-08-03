@@ -1,0 +1,4 @@
+location /xhgui {
+	index index.php;
+	try_files $uri $uri/ /xhgui/index.php$is_args$args;
+}
