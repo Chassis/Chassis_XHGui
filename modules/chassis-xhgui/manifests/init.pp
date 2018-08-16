@@ -36,7 +36,7 @@ class chassis-xhgui (
 	}
 
 	file { [
-		"/vagrant/extensions/chassis-xhgui/xhgui/config/config.php",
+		'/vagrant/extensions/chassis-xhgui/xhgui/config/config.php',
 	]:
 	  ensure  => $file,
 	  content => template('chassis-xhgui/config.php.erb'),
@@ -48,13 +48,13 @@ class chassis-xhgui (
 	}
 
 	exec { 'install xhgui':
-		path => [ '/bin/', '/sbin/', '/usr/bin/', '/usr/sbin/' ],
-		cwd => '/vagrant/extensions/chassis-xhgui/xhgui/',
-		command => 'php install.php',
-		require => [
-			Package["php$php_version-cli"],
-			Package["php$php_version-fpm"],
-			Package["php$php_version-mongodb"],
+		path        => [ '/bin/', '/sbin/', '/usr/bin/', '/usr/sbin/' ],
+		cwd         => '/vagrant/extensions/chassis-xhgui/xhgui/',
+		command     => 'php install.php',
+		require     => [
+			Package["php${php_version}-cli"],
+			Package["php${php_version}-fpm"],
+			Package["php${php_version}-mongodb"],
 			File["/etc/php/${config[php]}/fpm/conf.d/xhprof.ini"],
 			Exec['download xhprof and build it']
 		],
@@ -70,29 +70,29 @@ class chassis-xhgui (
 		require => Package['mongodb-org']
 	}
 
-	package { "php$php_version-mongodb":
-	  ensure  => $package,
-	  notify  => Service["php$php_version-fpm"]
+	package { "php${php_version}-mongodb":
+		ensure => $package,
+		notify => Service["php${php_version}-fpm"]
 	}
 
 	package { 'mongodb-org':
-	  ensure  => $package,
-	  require => Apt::Source['mongodb-org-4.0']
+		ensure  => $package,
+		require => Apt::Source['mongodb-org-4.0']
 	}
 
 	service { 'mongod':
-	  ensure  => running,
-	  require => Package['mongodb-org']
+		ensure  => running,
+		require => Package['mongodb-org']
 	}
 
-	file { "/etc/nginx/sites-available/$host_name.d":
-	  ensure => directory,
-	  require => File[ "/etc/nginx/sites-available/$host_names" ],
+	file { "/etc/nginx/sites-available/${host_name}.d":
+		ensure  => directory,
+		require => File[ "/etc/nginx/sites-available/${host_name}" ],
 	}
 
-	file { "/etc/nginx/sites-available/$host_name.d/$host_name":
-	  content => template('chassis-xhgui/xhgui.nginx.conf.erb'),
-	  notify => Service['nginx'],
+	file { "/etc/nginx/sites-available/${host_name}.d/${host_name}":
+		content => template('chassis-xhgui/xhgui.nginx.conf.erb'),
+		notify  => Service['nginx'],
 	}
 
 	file { '/vagrant/xhgui':
