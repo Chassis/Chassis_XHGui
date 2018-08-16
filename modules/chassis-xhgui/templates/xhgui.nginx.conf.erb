@@ -2,3 +2,7 @@ location /xhgui {
 	index index.php;
 	try_files $uri $uri/ /xhgui/index.php$is_args$args;
 }
+location <%= location %>/xhgui {
+	index index.php;
+	try_files $uri $uri/ <%= location %>/xhgui/index.php$is_args$args;
+}
