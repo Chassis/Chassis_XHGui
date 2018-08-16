@@ -62,6 +62,13 @@ class chassis-xhgui (
 		unless      => 'test -d /vagrant/extensions/chassis-xhgui/xhgui/vendor'
 	}
 
+	exec { 'enable mongod on boot':
+		path    => [ '/bin/', '/sbin/', '/usr/bin/', '/usr/sbin/' ],
+		command => 'systemctl enable mongod.service',
+		unless  => 'systemctl is-enabled mongod',
+		require => Package['mongodb-org']
+	}
+
 	package { "php$php_version-mongodb":
 	  ensure  => $package,
 	  notify  => Service["php$php_version-fpm"]
