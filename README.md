@@ -14,7 +14,7 @@ A Chassis extension to install and configure [XHGui](https://github.com/perftool
 	- chassis/chassis-xhgui
 	```
 2. Run `vagrant provision`.
-3. Browse to [http://vagrant.local/xhgui](http://vagrant.local/xhgui) in a browser or if you have a custom host hame it will be [http://<yourhost>.local/xghui](http://<yourhost>.local/xghui)
+3. Browse to [http://vagrant.local/xhgui](http://vagrant.local/xhgui) in a browser or if you have a custom host hame it will be [http://yourhostname.local/xghui](http://yourhostname.local/xghui). If you're using [custom paths](http://docs.chassis.io/en/latest/config/#paths) you'll need to change the URL to add your custom base. For example: If you've Chassis located in a `chassis` folder then the URL will be [http://vagrant.local/chassis/xhgui](http://vagrant.local/chassis/xhgui) or [http://yourhostname.local/chassis/xghui](http://yourhostname.local/chassis/xghui).
 
 ## Uninstallation
 1. Add `- chassis/chassis-xhgui` to your `disabled_extensions` in [yaml](http://docs.chassis.io/en/latest/config/) files. e.g.

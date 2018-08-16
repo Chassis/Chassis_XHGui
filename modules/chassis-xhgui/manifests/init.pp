@@ -3,7 +3,8 @@ class chassis-xhgui (
 	$config,
 	$path = '/vagrant/extensions/chassis-xhgui',
 	$php_version = $config[php],
-	$host_name =$config['hosts'][0]
+	$host_name = $config['hosts'][0],
+	$location  = $config[mapped_paths][base]
 ) {
 
 	$server_lsbdistcodename = downcase($::lsbdistcodename)
