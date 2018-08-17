@@ -18,6 +18,13 @@ class chassis-xhgui (
 	  include_src => false
 	}
 
+	# Setup the base paths for custom Chassis paths.
+	if ( $location != '/vagrant' ) {
+		$base_location = "${location}/chassis"
+	} else {
+		$base_location = $location
+	}
+
 	if ( ! empty( $config[disabled_extensions] ) and 'chassis/chassis-xhgui' in $config[disabled_extensions] ) {
 		$package = absent
 		$file = absent
@@ -36,7 +43,7 @@ class chassis-xhgui (
 	}
 
 	file { [
-		'/vagrant/extensions/chassis-xhgui/xhgui/config/config.php',
+		"${base_location}/extensions/chassis-xhgui/xhgui/config/config.php",
 	]:
 	  ensure  => $file,
 	  content => template('chassis-xhgui/config.php.erb'),
@@ -49,7 +56,7 @@ class chassis-xhgui (
 
 	exec { 'install xhgui':
 		path        => [ '/bin/', '/sbin/', '/usr/bin/', '/usr/sbin/' ],
-		cwd         => '/vagrant/extensions/chassis-xhgui/xhgui/',
+		cwd         => "${base_location}/extensions/chassis-xhgui/xhgui/",
 		command     => 'php install.php',
 		require     => [
 			Package["php${php_version}-cli"],
@@ -60,7 +67,7 @@ class chassis-xhgui (
 		],
 		environment => ['HOME=/home/vagrant'],
 		logoutput   => true,
-		unless      => 'test -d /vagrant/extensions/chassis-xhgui/xhgui/vendor'
+		unless      => "test -d ${base_location}/extensions/chassis-xhgui/xhgui/vendor"
 	}
 
 	exec { 'enable mongod on boot':
@@ -95,9 +102,9 @@ class chassis-xhgui (
 		notify  => Service['nginx'],
 	}
 
-	file { '/vagrant/xhgui':
+	file { "${base_location}/xhgui":
 		ensure => $link,
-		target => '/vagrant/extensions/chassis-xhgui/xhgui/webroot',
+		target => "${base_location}/extensions/chassis-xhgui/xhgui/webroot",
 		notify => Service['nginx'],
 	}
 
