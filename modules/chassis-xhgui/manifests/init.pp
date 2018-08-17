@@ -43,7 +43,7 @@ class chassis-xhgui (
 	}
 
 	file { [
-		'/vagrant/extensions/chassis-xhgui/xhgui/config/config.php',
+		"${base_location}/extensions/chassis-xhgui/xhgui/config/config.php",
 	]:
 	  ensure  => $file,
 	  content => template('chassis-xhgui/config.php.erb'),
