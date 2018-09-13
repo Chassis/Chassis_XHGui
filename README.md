@@ -2,9 +2,10 @@
 A Chassis extension to install and configure [XHGui](https://github.com/perftools/xhgui) on your Chassis server. This extension also has [XHProf](https://github.com/Chassis/XHProf) as a dependency so it will be installed and configured automatically as well.
 
 ## Installation
-1. Add this extension to your extensions directory `git clone git@github.com:Chassis/Chassis-XHGui.git extensions/chassis-xhgui`
-2. Run `vagrant provision`.
-3. Browse to [http://vagrant.local/xhgui](http://vagrant.local/xhgui) in a browser or if you have a custom host hame it will be [http://<yourhost>.local/xghui](http://<yourhost>.local/xghui)
+1. Add this extension to your extensions directory `git clone --recursive git@github.com:Chassis/Chassis-XHGui.git extensions/chassis-xhgui`
+2. Note: **The folder that you clone into must be called** `chassis-xhgui`.
+3. Run `vagrant provision`.
+4. Browse to [http://vagrant.local/xhgui](http://vagrant.local/xhgui) in a browser or if you have a custom host hame it will be [http://<yourhost>.local/xghui](http://<yourhost>.local/xghui)
 
 
 ## Alternative Installation
