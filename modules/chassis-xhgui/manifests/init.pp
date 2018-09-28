@@ -92,9 +92,11 @@ class chassis-xhgui (
 		require => Package['mongodb-org']
 	}
 
-	file { "/etc/nginx/sites-available/${host_name}.d":
-		ensure  => directory,
-		require => File[ "/etc/nginx/sites-available/${host_name}" ],
+	if ( ! defined( File["/etc/nginx/sites-available/${host_name}.d"] ) ) {
+		file { "/etc/nginx/sites-available/${host_name}.d":
+		  ensure  => directory,
+		  require => File[ "/etc/nginx/sites-available/${host_name}" ],
+		}
 	}
 
 	file { "/etc/nginx/sites-available/${host_name}.d/${host_name}":
