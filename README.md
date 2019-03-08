@@ -22,6 +22,25 @@ Browse to [http://vagrant.local/xhgui](http://vagrant.local/xhgui) in a browser.
 
 If you're using [custom paths](http://docs.chassis.io/en/latest/config/#paths) you'll need to change the URL to add your custom base. For example: If you've Chassis located in a `chassis` folder then the URL will be [http://vagrant.local/chassis/xhgui](http://vagrant.local/chassis/xhgui) or `http://<yourhostname>.local/chassis/xghui`.
 
+## Controlling When the Profiler Runs
+
+This extension enables the XHProf profiler for every request. You can control whether or not the profiler runs from the `profiler.enable` callback function that is contained within the `extensions/chassis-xhgui/xhgui/config/config.php` file.
+
+From this callback function you can perform logic based on `$_SERVER` values, `php_sapi_name()`, etc, but remember that WordPress has not loaded at this point so you can't use any function that WordPress provides.
+
+```php
+'profiler.enable' => function() {
+	if ( false !== strpos( $_SERVER['REQUEST_URI'], 'wp-admin/' ) ) {
+		// Disable the profiler for requests to wp-admin:
+		return false;
+	}
+
+	// Enable the profiler for all other requests:
+	return true;
+},
+
+```
+
 ## Uninstallation
 1. Add `- chassis/chassis-xhgui` to your `disabled_extensions` in [yaml](http://docs.chassis.io/en/latest/config/) files. e.g.
 	```
