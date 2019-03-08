@@ -41,6 +41,8 @@ From this callback function you can perform logic based on `$_SERVER` values, `p
 
 ```
 
+Further information about configuring the profiler and other XHGUI options can be found [in the XHGUI repo documentation](https://github.com/Chassis/xhgui).
+
 ## Uninstallation
 1. Add `- chassis/chassis-xhgui` to your `disabled_extensions` in [yaml](http://docs.chassis.io/en/latest/config/) files. e.g.
 	```
