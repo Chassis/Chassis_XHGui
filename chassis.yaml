@@ -8,3 +8,4 @@ version: 2
 
 dependencies:
   - chassis/xhprof
+  - composer

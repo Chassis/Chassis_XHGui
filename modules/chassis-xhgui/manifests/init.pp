@@ -78,8 +78,9 @@ class chassis-xhgui (
 	}
 
 	package { "php${php_version}-mongodb":
-		ensure => $package,
-		notify => Service["php${php_version}-fpm"]
+		ensure  => $package,
+		notify  => Service["php${php_version}-fpm"],
+		require => Package["php${php_version}-fpm"],
 	}
 
 	package { 'mongodb-org':
