@@ -1,7 +1,7 @@
 # A Chassis extension that installs XHProf and XHGui
-class chassis-xhgui (
+class chassis_xhgui (
 	$config,
-	$path = '/vagrant/extensions/chassis-xhgui',
+	$path = '/vagrant/extensions/chassis_xhgui',
 	$php_version = $config[php],
 	$host_name = $config['hosts'][0],
 	$location  = $config[mapped_paths][base]
@@ -25,7 +25,7 @@ class chassis-xhgui (
 		$base_location = $location
 	}
 
-	if ( ! empty( $config[disabled_extensions] ) and 'chassis/chassis-xhgui' in $config[disabled_extensions] ) {
+	if ( ! empty( $config[disabled_extensions] ) and 'chassis/chassis_xhgui' in $config[disabled_extensions] ) {
 		$package = absent
 		$file = absent
 		$link = absent
@@ -43,10 +43,10 @@ class chassis-xhgui (
 	}
 
 	file { [
-		"${base_location}/extensions/chassis-xhgui/xhgui/config/config.php",
+		"${base_location}/extensions/chassis_xhgui/xhgui/config/config.php",
 	]:
 	  ensure  => $file,
-	  content => template('chassis-xhgui/config.php.erb'),
+	  content => template('chassis_xhgui/config.php.erb'),
 	  owner   => 'root',
 	  group   => 'root',
 	  mode    => '0644',
@@ -56,7 +56,7 @@ class chassis-xhgui (
 
 	exec { 'install xhgui':
 		path        => [ '/bin/', '/sbin/', '/usr/bin/', '/usr/sbin/' ],
-		cwd         => "${base_location}/extensions/chassis-xhgui/xhgui/",
+		cwd         => "${base_location}/extensions/chassis_xhgui/xhgui/",
 		command     => 'php install.php',
 		require     => [
 			Package["php${php_version}-cli"],
@@ -67,7 +67,7 @@ class chassis-xhgui (
 		],
 		environment => ['HOME=/home/vagrant'],
 		logoutput   => true,
-		unless      => "test -d ${base_location}/extensions/chassis-xhgui/xhgui/vendor"
+		unless      => "test -d ${base_location}/extensions/chassis_xhgui/xhgui/vendor"
 	}
 
 	exec { 'enable mongod on boot':
@@ -101,13 +101,13 @@ class chassis-xhgui (
 	}
 
 	file { "/etc/nginx/sites-available/${host_name}.d/${host_name}":
-		content => template('chassis-xhgui/xhgui.nginx.conf.erb'),
+		content => template('chassis_xhgui/xhgui.nginx.conf.erb'),
 		notify  => Service['nginx'],
 	}
 
 	file { "${base_location}/xhgui":
 		ensure => $link,
-		target => "${base_location}/extensions/chassis-xhgui/xhgui/webroot",
+		target => "${base_location}/extensions/chassis_xhgui/xhgui/webroot",
 		notify => Service['nginx'],
 	}
 

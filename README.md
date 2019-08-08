@@ -2,15 +2,15 @@
 A Chassis extension to install and configure [XHGui](https://github.com/perftools/xhgui) on your Chassis server. This extension also has [XHProf](https://github.com/Chassis/XHProf) as a dependency so it will be installed and configured automatically as well.
 
 ## Installation
-1. Add this extension to your extensions directory `git clone --recursive git@github.com:Chassis/Chassis-XHGui.git extensions/chassis-xhgui`
-2. Note: **The folder that you clone into must be called** `chassis-xhgui`.
+1. Add this extension to your extensions directory `git clone --recursive git@github.com:Chassis/Chassis_XHGui.git extensions/chassis_xhgui`
+2. Note: **The folder that you clone into must be called** `chassis_xhgui`.
 3. Run `vagrant provision`.
 
 ## Alternative Installation
-1. Add `- chassis/chassis-xhgui` to your `extensions` in [yaml](http://docs.chassis.io/en/latest/config/) files. e.g.
+1. Add `- chassis/chassis_xhgui` to your `extensions` in [yaml](http://docs.chassis.io/en/latest/config/) files. e.g.
 	```
 	extensions:
-	- chassis/chassis-xhgui
+	- chassis/chassis_xhgui
 	```
 2. Run `vagrant provision`.
 
@@ -24,7 +24,7 @@ If you're using [custom paths](http://docs.chassis.io/en/latest/config/#paths) y
 
 ## Controlling When the Profiler Runs
 
-This extension enables the XHProf profiler for every request. You can control whether or not the profiler runs from the `profiler.enable` callback function that is contained within the `extensions/chassis-xhgui/xhgui/config/config.php` file.
+This extension enables the XHProf profiler for every request. You can control whether or not the profiler runs from the `profiler.enable` callback function that is contained within the `extensions/chassis_xhgui/xhgui/config/config.php` file.
 
 From this callback function you can perform logic based on `$_SERVER` values, `php_sapi_name()`, etc, but remember that WordPress has not loaded at this point so you can't use any function that WordPress provides.
 
@@ -44,10 +44,10 @@ From this callback function you can perform logic based on `$_SERVER` values, `p
 Further information about configuring the profiler and other XHGUI options can be found [in the XHGUI repo documentation](https://github.com/Chassis/xhgui).
 
 ## Uninstallation
-1. Add `- chassis/chassis-xhgui` to your `disabled_extensions` in [yaml](http://docs.chassis.io/en/latest/config/) files. e.g.
+1. Add `- chassis/chassis_xhgui` to your `disabled_extensions` in [yaml](http://docs.chassis.io/en/latest/config/) files. e.g.
 	```
 	disabled_extensions:
-	- chassis/chassis-xhgui
+	- chassis/chassis_xhgui
 	```
 2. Run `vagrant provision`.
 
