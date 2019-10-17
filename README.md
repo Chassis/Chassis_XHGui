@@ -18,9 +18,9 @@ A Chassis extension to install and configure [XHGui](https://github.com/perftool
 
 ## Usage
 
-Browse to [http://vagrant.local/xhgui](http://vagrant.local/xhgui) in a browser. If you have a custom host hame it will be `http://<yourhostname>.local/xghui`.
+Browse to [http://vagrant.local/xhgui](http://vagrant.local/xhgui) in a browser. If you have a custom host hame it will be `http://<yourhostname>.local/xhgui`.
 
-If you're using [custom paths](http://docs.chassis.io/en/latest/config/#paths) you'll need to change the URL to add your custom base. For example: If you've Chassis located in a `chassis` folder then the URL will be [http://vagrant.local/chassis/xhgui](http://vagrant.local/chassis/xhgui) or `http://<yourhostname>.local/chassis/xghui`.
+If you're using [custom paths](http://docs.chassis.io/en/latest/config/#paths) you'll need to change the URL to add your custom base. For example: If you've Chassis located in a `chassis` folder then the URL will be [http://vagrant.local/chassis/xhgui](http://vagrant.local/chassis/xhgui) or `http://<yourhostname>.local/chassis/xhgui`.
 
 ## Controlling When the Profiler Runs
 
