@@ -85,7 +85,7 @@ class chassis_xhgui (
 
 	package { 'mongodb-org':
 		ensure  => $package,
-		require => Apt::Source['mongodb-org-4.0']
+		require => [ Apt::Source['mongodb-org-4.0'], Class['apt::update'] ]
 	}
 
 	service { 'mongod':
