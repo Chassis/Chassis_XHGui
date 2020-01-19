@@ -10,12 +10,13 @@ class chassis_xhgui (
 	$server_lsbdistcodename = downcase($::lsbdistcodename)
 
 	apt::source { 'mongodb-org-4.0':
-	  location    => 'http://repo.mongodb.org/apt/ubuntu',
-	  release     => "${server_lsbdistcodename}/mongodb-org/4.0",
-	  repos       => 'multiverse',
-	  key         => '9DA31620334BD75D9DCB49F368818C72E52529D4',
-	  key_server  => 'keyserver.ubuntu.com',
-	  include_src => false
+		location => 'http://repo.mongodb.org/apt/ubuntu',
+		release  => "${server_lsbdistcodename}/mongodb-org/4.0",
+		repos    => 'multiverse',
+		key      => {
+			'id'     => '9DA31620334BD75D9DCB49F368818C72E52529D4',
+			'server' => 'keyserver.ubuntu.com',
+		}
 	}
 
 	# Setup the base paths for custom Chassis paths.
