@@ -55,22 +55,6 @@ class chassis_xhgui (
 	  notify  => Service["php${config[php]}-fpm"]
 	}
 
-	exec { 'install xhgui':
-		path        => [ '/bin/', '/sbin/', '/usr/bin/', '/usr/sbin/' ],
-		cwd         => "${base_location}/extensions/chassis_xhgui/xhgui/",
-		command     => 'php install.php',
-		require     => [
-			Package["php${php_version}-cli"],
-			Package["php${php_version}-fpm"],
-			Package["php${php_version}-mongodb"],
-			File["/etc/php/${config[php]}/fpm/conf.d/xhprof.ini"],
-			Exec['download xhprof and build it']
-		],
-		environment => ['HOME=/home/vagrant'],
-		logoutput   => true,
-		unless      => "test -d ${base_location}/extensions/chassis_xhgui/xhgui/vendor"
-	}
-
 	exec { 'enable mongod on boot':
 		path    => [ '/bin/', '/sbin/', '/usr/bin/', '/usr/sbin/' ],
 		command => 'systemctl enable mongod.service',
