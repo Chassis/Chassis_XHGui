@@ -9,3 +9,7 @@ version: 2
 dependencies:
   - chassis/xhprof
   - composer
+
+composer:
+    paths:
+      - /vagrant/extensions/chassis_xhgui/xhgui
